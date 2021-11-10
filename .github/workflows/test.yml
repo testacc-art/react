@@ -1,0 +1,27 @@
+name: Test setup-node caching
+on: [push]
+jobs:
+  run:
+    name: Node test
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-18.04, macos-latest, windows-latest]
+        version: [ '12.x', '14.x', '16.x' ]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - uses: hkaur008/setup-node@pull209
+      with:
+        node-version-file: .nvmrc
+    - name: Node version
+      shell: pwsh
+      run: node --version
+    - name: Yarn version
+      run: yarn --version
+    - name: Npm version
+      shell: pwsh
+      run: npm --version
+    - name: Install dependencies2
+      run: yarn install
