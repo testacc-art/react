@@ -13,12 +13,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - run: |
-        mkdir temp
-        mv .nvmrc /temp
+        mkdir temp1
+        mv .nvmrc /temp1
     - uses: hkaur008/setup-node@pull209
       with:
 #         node-version: 16
-        node-version-file: temp/.nvmrc
+        node-version-file: temp1/.nvmrc
     - name: Node version
       shell: pwsh
       run: node --version
