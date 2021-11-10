@@ -15,7 +15,7 @@ jobs:
     - uses: hkaur008/setup-node@pull209
       with:
         node-version: 16
-        node-version-file: .nvmrc
+#         node-version-file: .nvmrc
     - name: Node version
       shell: pwsh
       run: node --version
