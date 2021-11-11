@@ -1,5 +1,5 @@
 name: Test setup-node caching
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   run:
     name: Node test
@@ -13,11 +13,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - uses: dmitry-shibanov/setup-node@add-caching
+    - uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.version }}
         cache: yarn
-        key: '**/yarn.lock'
+    - run: npm install -g npm@latest
     - name: Node version
       shell: pwsh
       run: node --version
@@ -27,4 +27,4 @@ jobs:
       shell: pwsh
       run: npm --version
     - name: Install dependencies2
-      run: yarn install
+      run: npm install
