@@ -7,8 +7,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ubuntu-18.04, macos-latest, windows-latest]
-        version: [ '12.x', '14.x', '16.x' ]
+        operating-system: [ macos-11 ]
+        version: [ '14.x' ]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -16,15 +16,10 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.version }}
-        cache: yarn
-    - run: npm install -g npm@latest
     - name: Node version
       shell: pwsh
       run: node --version
     - name: Yarn version
       run: yarn --version
-    - name: Npm version
-      shell: pwsh
-      run: npm --version
-    - name: Install dependencies2
-      run: npm install
+    - name: Install dependencies
+      run: yarn install
